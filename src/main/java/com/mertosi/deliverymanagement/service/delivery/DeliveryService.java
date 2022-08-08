@@ -5,4 +5,8 @@ import com.mertosi.deliverymanagement.model.dto.response.delivery.MakeDeliveryRe
 
 public interface DeliveryService {
     MakeDeliveryResponse makeDelivery(MakeDeliveryRequest request);
+
+    boolean isDeliveryPackage(String barcode);
+
+    boolean isDeliveryBag(String barcode);
 }

@@ -1,6 +1,6 @@
 package com.mertosi.deliverymanagement.service.shipment;
 
-import com.mertosi.deliverymanagement.common.enums.PackageStatus;
+import com.mertosi.deliverymanagement.common.enums.ShipmentStatus;
 import com.mertosi.deliverymanagement.common.exception.DeliveryManagementException;
 import com.mertosi.deliverymanagement.common.mapper.shipment.ShipmentRequestMapper;
 import com.mertosi.deliverymanagement.model.dto.request.ShipmentRequest;
@@ -45,8 +45,8 @@ public class ShipmentCommandServiceImpl implements ShipmentCommandService {
     }
 
     @Override
-    public ShipmentEntity updateStatus(ShipmentEntity shipmentEntity, PackageStatus status) {
-        if (PackageStatus.UNLOADED.equals(shipmentEntity.getStatus())) {
+    public ShipmentEntity updateStatus(ShipmentEntity shipmentEntity, ShipmentStatus status) {
+        if (ShipmentStatus.UNLOADED.equals(shipmentEntity.getStatus())) {
             throw new DeliveryManagementException("Package unloaded status can not change");
         }
 

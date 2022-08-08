@@ -12,10 +12,10 @@ public class MakeDeliveryRequestBuilder extends TestDataBuilder<MakeDeliveryRequ
 
     public static MakeDeliveryRequest getValidMakeDeliveryRequest() {
         List<RouteRequest> route = RouteRequestBuilder.getValidRouteRequests();
-        return new MakeDeliveryRequestBuilder().withDeliveryRequests(route).build();
+        return new MakeDeliveryRequestBuilder().withRouteRequests(route).build();
     }
 
-    public MakeDeliveryRequestBuilder withDeliveryRequests(List<RouteRequest> route) {
+    public MakeDeliveryRequestBuilder withRouteRequests(List<RouteRequest> route) {
         data.setRoute(route);
         return this;
     }

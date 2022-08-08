@@ -1,6 +1,6 @@
 package com.mertosi.deliverymanagement.service.shipment;
 
-import com.mertosi.deliverymanagement.common.enums.PackageStatus;
+import com.mertosi.deliverymanagement.common.enums.ShipmentStatus;
 import com.mertosi.deliverymanagement.common.exception.DeliveryManagementException;
 import com.mertosi.deliverymanagement.model.dto.request.ShipmentRequest;
 import com.mertosi.deliverymanagement.model.dto.request.ShipmentRequestBuilder;
@@ -47,7 +47,7 @@ class ShipmentCommandServiceTest extends AbstractUnitTest {
 
     @Test
     void givenValidStatus_whenUpdateShipmentEntity_thenReturnShipmentEntity() {
-        PackageStatus status = PackageStatus.LOADED;
+        ShipmentStatus status = ShipmentStatus.LOADED;
         ShipmentEntity testShipmentEntity = ShipmentEntityBuilder.getValidShipmentEntity();
 
         when(shipmentCommandRepository.save(any(ShipmentEntity.class))).thenReturn(testShipmentEntity);
@@ -58,9 +58,9 @@ class ShipmentCommandServiceTest extends AbstractUnitTest {
 
     @Test
     void givenInvalidStatus_whenUpdateShipmentEntity_thenThrowDeliveryManagementException() {
-        PackageStatus status = PackageStatus.LOADED;
+        ShipmentStatus status = ShipmentStatus.LOADED;
         ShipmentEntity testShipmentEntity = ShipmentEntityBuilder.getValidShipmentEntity();
-        testShipmentEntity.setStatus(PackageStatus.UNLOADED);
+        testShipmentEntity.setStatus(ShipmentStatus.UNLOADED);
 
         assertThrows(DeliveryManagementException.class, () -> shipmentCommandService.updateStatus(testShipmentEntity, status));
     }

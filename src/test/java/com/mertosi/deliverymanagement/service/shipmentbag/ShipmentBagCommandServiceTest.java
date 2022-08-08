@@ -1,6 +1,6 @@
 package com.mertosi.deliverymanagement.service.shipmentbag;
 
-import com.mertosi.deliverymanagement.common.enums.PackageStatus;
+import com.mertosi.deliverymanagement.common.enums.ShipmentStatus;
 import com.mertosi.deliverymanagement.common.exception.DeliveryManagementException;
 import com.mertosi.deliverymanagement.model.dto.request.ShipmentBagRequest;
 import com.mertosi.deliverymanagement.model.dto.request.ShipmentBagRequestBuilder;
@@ -50,7 +50,7 @@ class ShipmentBagCommandServiceTest extends AbstractUnitTest {
         when(shipmentQueryService.getByBarcode(anyString())).thenReturn(testShipmentEntity);
         when(bagQueryService.getByBarcode(anyString())).thenReturn(testBagEntity);
         when(shipmentBagCommandRepository.save(any(ShipmentBagEntity.class))).thenReturn(testShipmentBagEntity);
-        when(shipmentCommandService.updateStatus(any(ShipmentEntity.class), any(PackageStatus.class))).thenReturn(testShipmentEntity);
+        when(shipmentCommandService.updateStatus(any(ShipmentEntity.class), any(ShipmentStatus.class))).thenReturn(testShipmentEntity);
 
         List<ShipmentBagEntity> shipmentBagEntities = shipmentBagCommandService.create(testShipmentBagRequests);
 

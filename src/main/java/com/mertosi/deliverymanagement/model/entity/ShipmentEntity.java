@@ -1,6 +1,6 @@
 package com.mertosi.deliverymanagement.model.entity;
 
-import com.mertosi.deliverymanagement.common.enums.PackageStatus;
+import com.mertosi.deliverymanagement.common.enums.ShipmentStatus;
 import lombok.*;
 
 import javax.persistence.*;
@@ -32,5 +32,5 @@ public class ShipmentEntity extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     @Builder.Default
-    private PackageStatus status = PackageStatus.CREATED;
+    private ShipmentStatus status = ShipmentStatus.CREATED;
 }

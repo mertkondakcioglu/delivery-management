@@ -1,4 +1,4 @@
-package com.mertosi.deliverymanagement.service.delivery;
+package com.mertosi.deliverymanagement.service.delivery.error;
 
 import com.mertosi.deliverymanagement.model.entity.DeliveryErrorEntity;
 

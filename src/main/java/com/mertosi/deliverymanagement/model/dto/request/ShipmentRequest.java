@@ -2,11 +2,9 @@ package com.mertosi.deliverymanagement.model.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.util.StringUtils;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Getter
 @Setter
@@ -22,4 +20,10 @@ public class ShipmentRequest {
     @NotNull
     @Positive
     private Integer volumetricWeight;
+
+    @AssertTrue(message = "Package barcode must start with P")
+    private boolean isPackageBarcodeValid() {
+        if (!StringUtils.hasText(barcode)) return true;
+        return barcode.startsWith("P");
+    }
 }

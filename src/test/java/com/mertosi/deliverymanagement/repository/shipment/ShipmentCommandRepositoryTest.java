@@ -1,6 +1,6 @@
 package com.mertosi.deliverymanagement.repository.shipment;
 
-import com.mertosi.deliverymanagement.common.enums.PackageStatus;
+import com.mertosi.deliverymanagement.common.enums.ShipmentStatus;
 import com.mertosi.deliverymanagement.model.entity.ShipmentEntity;
 import com.mertosi.deliverymanagement.model.entity.ShipmentEntityBuilder;
 import com.mertosi.deliverymanagement.repository.AbstractJpaIntegrationTest;
@@ -34,7 +34,7 @@ class ShipmentCommandRepositoryTest extends AbstractJpaIntegrationTest {
     @Test
     void givenValidStatus_whenUpdateShipmentEntity_thenReturnShipmentEntity() {
         testEntityManager.persist(testShipmentEntity);
-        testShipmentEntity.setStatus(PackageStatus.LOADED);
+        testShipmentEntity.setStatus(ShipmentStatus.LOADED);
         ShipmentEntity updatedShipmentEntity = shipmentCommandRepository.save(testShipmentEntity);
 
         Optional<ShipmentEntity> shipmentEntity = shipmentCommandRepository.findById(testShipmentEntity.getId());

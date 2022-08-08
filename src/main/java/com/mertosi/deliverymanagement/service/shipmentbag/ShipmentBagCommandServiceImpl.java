@@ -1,6 +1,6 @@
 package com.mertosi.deliverymanagement.service.shipmentbag;
 
-import com.mertosi.deliverymanagement.common.enums.PackageStatus;
+import com.mertosi.deliverymanagement.common.enums.ShipmentStatus;
 import com.mertosi.deliverymanagement.common.exception.DeliveryManagementException;
 import com.mertosi.deliverymanagement.model.dto.request.ShipmentBagRequest;
 import com.mertosi.deliverymanagement.model.entity.BagEntity;
@@ -43,7 +43,7 @@ public class ShipmentBagCommandServiceImpl implements ShipmentBagCommandService 
                     .build();
 
             ShipmentBagEntity savedShipmentBagEntity = shipmentBagCommandRepository.save(shipmentBagEntity);
-            ShipmentEntity updatedBarcode = shipmentCommandService.updateStatus(shipmentEntity, PackageStatus.LOADED_INTO_BAG);
+            ShipmentEntity updatedBarcode = shipmentCommandService.updateStatus(shipmentEntity, ShipmentStatus.LOADED_INTO_BAG);
             savedShipmentBagEntity.setBarcode(updatedBarcode);
             shipmentBagEntities.add(savedShipmentBagEntity);
         }

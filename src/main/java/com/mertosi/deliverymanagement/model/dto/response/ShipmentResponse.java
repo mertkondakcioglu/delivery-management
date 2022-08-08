@@ -1,6 +1,6 @@
 package com.mertosi.deliverymanagement.model.dto.response;
 
-import com.mertosi.deliverymanagement.common.enums.PackageStatus;
+import com.mertosi.deliverymanagement.common.enums.ShipmentStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,5 +10,5 @@ public class ShipmentResponse extends AbstractResponse {
     private String barcode;
     private DeliveryPointResponse deliveryPoint;
     private Integer volumetricWeight;
-    private PackageStatus status;
+    private ShipmentStatus status;
 }

@@ -4,6 +4,7 @@ import com.mertosi.deliverymanagement.model.entity.DeliveryErrorEntity;
 import com.mertosi.deliverymanagement.model.entity.DeliveryErrorEntityBuilder;
 import com.mertosi.deliverymanagement.repository.delivery.DeliveryErrorRepository;
 import com.mertosi.deliverymanagement.service.AbstractUnitTest;
+import com.mertosi.deliverymanagement.service.delivery.error.DeliveryErrorServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

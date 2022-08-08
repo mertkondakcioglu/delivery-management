@@ -2,11 +2,9 @@ package com.mertosi.deliverymanagement.model.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.util.StringUtils;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Getter
 @Setter
@@ -18,4 +16,10 @@ public class BagRequest {
     @NotNull
     @Positive
     private Integer deliveryPoint;
+
+    @AssertTrue(message = "Bag barcode must start with C")
+    private boolean isBagBarcodeValid() {
+        if (!StringUtils.hasText(barcode)) return true;
+        return barcode.startsWith("C");
+    }
 }
