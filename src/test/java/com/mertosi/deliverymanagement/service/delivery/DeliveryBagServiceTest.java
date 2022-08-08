@@ -53,7 +53,7 @@ class DeliveryBagServiceTest extends AbstractUnitTest {
         when(bagCommandService.updateStatus(any(BagEntity.class), any(BagStatus.class))).thenReturn(testBagEntity);
 
         List<ShipmentEntity> testShipmentEntities = ShipmentEntityBuilder.getValidShipmentEntities();
-        when(shipmentQueryService.getPackagesInBagByBagBarcode(anyString())).thenReturn(testShipmentEntities);
+        when(shipmentQueryService.getShipmentsInBagByBagBarcode(anyString())).thenReturn(testShipmentEntities);
 
         ShipmentEntity testShipmentEntity = ShipmentEntityBuilder.getValidShipmentEntity();
         when(shipmentCommandService.updateStatus(any(ShipmentEntity.class), any(ShipmentStatus.class))).thenReturn(testShipmentEntity);
@@ -110,13 +110,13 @@ class DeliveryBagServiceTest extends AbstractUnitTest {
     }
 
     @Test
-    void givenMakeDeliveryPackagesInBagWithoutBag_whenCheckBagsStatusAfterDelivery_thenUpdateStatus() {
+    void givenMakeDeliveryShipmentsInBagWithoutBag_whenCheckBagsStatusAfterDelivery_thenUpdateStatus() {
         List<BagEntity> testBagEntities = BagEntityBuilder.getValidBagEntities();
         when(bagQueryService.getAllByStatus(any(BagStatus.class))).thenReturn(testBagEntities);
 
         List<ShipmentEntity> testShipmentEntities = ShipmentEntityBuilder.getValidShipmentEntities();
         testShipmentEntities.forEach(shipmentEntity -> shipmentEntity.setStatus(ShipmentStatus.UNLOADED));
-        when(shipmentQueryService.getPackagesInBagByBagBarcode(anyString())).thenReturn(testShipmentEntities);
+        when(shipmentQueryService.getShipmentsInBagByBagBarcode(anyString())).thenReturn(testShipmentEntities);
 
         BagEntity testBagEntity = BagEntityBuilder.getValidBagEntity();
         when(bagCommandService.updateStatus(any(BagEntity.class), any(BagStatus.class))).thenReturn(testBagEntity);
@@ -126,12 +126,12 @@ class DeliveryBagServiceTest extends AbstractUnitTest {
     }
 
     @Test
-    void givenMakeDeliveryWithoutPackagesInBag_whenCheckBagsStatusAfterDelivery_thenNothing() {
+    void givenMakeDeliveryWithoutShipmentsInBag_whenCheckBagsStatusAfterDelivery_thenNothing() {
         List<BagEntity> testBagEntities = BagEntityBuilder.getValidBagEntities();
         when(bagQueryService.getAllByStatus(any(BagStatus.class))).thenReturn(testBagEntities);
 
         List<ShipmentEntity> testShipmentEntities = ShipmentEntityBuilder.getValidShipmentEntities();
-        when(shipmentQueryService.getPackagesInBagByBagBarcode(anyString())).thenReturn(testShipmentEntities);
+        when(shipmentQueryService.getShipmentsInBagByBagBarcode(anyString())).thenReturn(testShipmentEntities);
 
         deliveryBagService.checkBagsStatusAfterDelivery();
         verify(bagCommandService, never()).updateStatus(any(BagEntity.class), any(BagStatus.class));

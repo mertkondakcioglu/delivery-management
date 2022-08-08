@@ -9,5 +9,5 @@ public interface ShipmentQueryService {
 
     List<ShipmentEntity> getAll();
 
-    List<ShipmentEntity> getPackagesInBagByBagBarcode(String bagBarcode);
+    List<ShipmentEntity> getShipmentsInBagByBagBarcode(String bagBarcode);
 }

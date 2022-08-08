@@ -35,7 +35,7 @@ public class DeliveryBagServiceImpl implements DeliveryBagService {
         bagEntity = bagCommandService.updateStatus(bagEntity, BagStatus.LOADED);
 
         if (isLoadable(bagEntity, routeResponse.getDeliveryPoint())) {
-            List<ShipmentEntity> packagesInBag = shipmentQueryService.getPackagesInBagByBagBarcode(bagEntity.getBarcode());
+            List<ShipmentEntity> packagesInBag = shipmentQueryService.getShipmentsInBagByBagBarcode(bagEntity.getBarcode());
             packagesInBag.forEach(shipmentEntity -> shipmentCommandService.updateStatus(shipmentEntity, ShipmentStatus.UNLOADED));
             bagEntity = bagCommandService.updateStatus(bagEntity, BagStatus.UNLOADED);
         } else {
@@ -55,7 +55,7 @@ public class DeliveryBagServiceImpl implements DeliveryBagService {
     public void checkBagsStatusAfterDelivery() {
         List<BagEntity> bagEntities = bagQueryService.getAllByStatus(BagStatus.CREATED);
         bagEntities.forEach(bagEntity -> {
-            List<ShipmentEntity> packagesInBag = shipmentQueryService.getPackagesInBagByBagBarcode(bagEntity.getBarcode());
+            List<ShipmentEntity> packagesInBag = shipmentQueryService.getShipmentsInBagByBagBarcode(bagEntity.getBarcode());
             boolean isBagTotallyUnloaded = packagesInBag.stream()
                     .allMatch(shipmentEntity -> ShipmentStatus.UNLOADED.equals(shipmentEntity.getStatus()));
 

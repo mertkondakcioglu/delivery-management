@@ -26,7 +26,7 @@ public class ShipmentQueryServiceImpl implements ShipmentQueryService {
     }
 
     @Override
-    public List<ShipmentEntity> getPackagesInBagByBagBarcode(String bagBarcode) {
-        return shipmentQueryRepository.findPackagesInBagByBagBarcode(bagBarcode);
+    public List<ShipmentEntity> getShipmentsInBagByBagBarcode(String bagBarcode) {
+        return shipmentQueryRepository.findShipmentsInBagByBagBarcode(bagBarcode);
     }
 }

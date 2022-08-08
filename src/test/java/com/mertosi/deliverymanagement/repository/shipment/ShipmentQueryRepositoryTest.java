@@ -54,7 +54,7 @@ class ShipmentQueryRepositoryTest extends AbstractJpaIntegrationTest {
                 .build();
         testEntityManager.persist(testShipmentBagEntity);
 
-        List<ShipmentEntity> shipmentEntities = shipmentQueryRepository.findPackagesInBagByBagBarcode(testBagEntity.getBarcode());
+        List<ShipmentEntity> shipmentEntities = shipmentQueryRepository.findShipmentsInBagByBagBarcode(testBagEntity.getBarcode());
         assertThat(shipmentEntities).contains(testShipmentEntity);
     }
 }

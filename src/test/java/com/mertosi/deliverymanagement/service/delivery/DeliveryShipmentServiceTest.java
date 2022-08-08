@@ -36,7 +36,7 @@ class DeliveryShipmentServiceTest extends AbstractUnitTest {
     private DeliveryErrorService deliveryErrorService;
 
     @Test
-    void givenValidPackage_whenDeliveryPackage_thenUpdateStatus() {
+    void givenValidShipment_whenDeliveryShipment_thenUpdateStatus() {
         RouteResponse testRouteResponse = RouteResponseBuilder.getValidRouteResponse();
         testRouteResponse.setDeliveryPoint(DeliveryPoint.DISTRIBUTION_CENTER.getValue());
         DeliveryResponse testDeliveryResponse = DeliveryResponseBuilder.getValidDeliveryResponse();
@@ -54,7 +54,7 @@ class DeliveryShipmentServiceTest extends AbstractUnitTest {
     }
 
     @Test
-    void givenInvalidPackage_whenDeliveryPackage_thenCreateErrorLog() {
+    void givenInvalidShipment_whenDeliveryShipment_thenCreateErrorLog() {
         RouteResponse testRouteResponse = RouteResponseBuilder.getValidRouteResponse();
         testRouteResponse.setDeliveryPoint(DeliveryPoint.TRANSFER_CENTER.getValue());
         DeliveryResponse testDeliveryResponse = DeliveryResponseBuilder.getValidDeliveryResponse();
@@ -72,7 +72,7 @@ class DeliveryShipmentServiceTest extends AbstractUnitTest {
     }
 
     @Test
-    void givenValidDeliveryPoint_whenIsPackageLoadable_thenReturnTrue() {
+    void givenValidDeliveryPoint_whenIsShipmentLoadable_thenReturnTrue() {
         ShipmentEntity testShipmentEntity = ShipmentEntityBuilder.getValidShipmentEntity();
         testShipmentEntity.getDeliveryPoint().setValue(DeliveryPoint.BRANCH.getValue());
         when(shipmentQueryService.getByBarcode(anyString())).thenReturn(testShipmentEntity);
@@ -83,7 +83,7 @@ class DeliveryShipmentServiceTest extends AbstractUnitTest {
     }
 
     @Test
-    void givenValidShipmentBagEntityAndInvalidDeliveryPoint_whenIsPackageLoadable_thenReturnTrue() {
+    void givenValidShipmentBagEntityAndInvalidDeliveryPoint_whenIsShipmentLoadable_thenReturnTrue() {
         ShipmentEntity testShipmentEntity = ShipmentEntityBuilder.getValidShipmentEntity();
         testShipmentEntity.getDeliveryPoint().setValue(DeliveryPoint.TRANSFER_CENTER.getValue());
         when(shipmentQueryService.getByBarcode(anyString())).thenReturn(testShipmentEntity);
@@ -96,7 +96,7 @@ class DeliveryShipmentServiceTest extends AbstractUnitTest {
     }
 
     @Test
-    void givenInvalidRouteDeliveryPoint_whenIsPackageLoadable_thenReturnFalse() {
+    void givenInvalidRouteDeliveryPoint_whenIsShipmentLoadable_thenReturnFalse() {
         ShipmentEntity testShipmentEntity = ShipmentEntityBuilder.getValidShipmentEntity();
         testShipmentEntity.getDeliveryPoint().setValue(DeliveryPoint.BRANCH.getValue());
         when(shipmentQueryService.getByBarcode(anyString())).thenReturn(testShipmentEntity);
@@ -107,7 +107,7 @@ class DeliveryShipmentServiceTest extends AbstractUnitTest {
     }
 
     @Test
-    void givenInvalidShipmentBagEntityAndInvalidDeliveryPoint_whenIsPackageLoadable_thenReturnFalse() {
+    void givenInvalidShipmentBagEntityAndInvalidDeliveryPoint_whenIsShipmentLoadable_thenReturnFalse() {
         ShipmentEntity testShipmentEntity = ShipmentEntityBuilder.getValidShipmentEntity();
         testShipmentEntity.getDeliveryPoint().setValue(DeliveryPoint.TRANSFER_CENTER.getValue());
 

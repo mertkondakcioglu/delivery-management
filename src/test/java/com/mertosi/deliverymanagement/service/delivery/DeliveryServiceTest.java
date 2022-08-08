@@ -31,7 +31,7 @@ class DeliveryServiceTest extends AbstractUnitTest {
     private DeliveryShipmentService deliveryShipmentService;
 
     @Test
-    void givenValidMakeDeliveryRequest_whenMakeDeliveryPackage_thenReturnMakeDeliveryResponse() {
+    void givenValidMakeDeliveryRequest_whenMakeDeliveryShipment_thenReturnMakeDeliveryResponse() {
         MakeDeliveryRequest testMakeDeliveryRequest = MakeDeliveryRequestBuilder.getValidMakeDeliveryRequest();
 
         VehicleEntity testVehicleEntity = VehicleEntityBuilder.getValidVehicleEntity();
@@ -55,30 +55,30 @@ class DeliveryServiceTest extends AbstractUnitTest {
     }
 
     @Test
-    void givenValidPackageBarcode_whenIsDeliveryPackage_thenReturnTrue() {
+    void givenValidShipmentBarcode_whenIsDeliveryShipment_thenReturnTrue() {
         String barcode = "P1234567890";
-        boolean isPackage = deliveryService.isDeliveryPackage(barcode);
-        assertThat(isPackage).isTrue();
+        boolean isShipment = deliveryService.isDeliveryShipment(barcode);
+        assertThat(isShipment).isTrue();
     }
 
     @Test
-    void givenValidBagBarcode_whenIsDeliveryPackage_thenReturnFalse() {
+    void givenValidBagBarcode_whenIsDeliveryShipment_thenReturnFalse() {
         String barcode = "C123456";
-        boolean isPackage = deliveryService.isDeliveryPackage(barcode);
-        assertThat(isPackage).isFalse();
+        boolean isShipment = deliveryService.isDeliveryShipment(barcode);
+        assertThat(isShipment).isFalse();
     }
 
     @Test
     void givenValidBagBarcode_whenIsDeliveryBag_thenReturnTrue() {
         String barcode = "C123456";
-        boolean isPackage = deliveryService.isDeliveryBag(barcode);
-        assertThat(isPackage).isTrue();
+        boolean isShipment = deliveryService.isDeliveryBag(barcode);
+        assertThat(isShipment).isTrue();
     }
 
     @Test
-    void givenValidPackageBarcode_whenIsDeliveryBag_thenReturnFalse() {
+    void givenValidShipmentBarcode_whenIsDeliveryBag_thenReturnFalse() {
         String barcode = "P1234567890";
-        boolean isPackage = deliveryService.isDeliveryBag(barcode);
-        assertThat(isPackage).isFalse();
+        boolean isShipment = deliveryService.isDeliveryBag(barcode);
+        assertThat(isShipment).isFalse();
     }
 }

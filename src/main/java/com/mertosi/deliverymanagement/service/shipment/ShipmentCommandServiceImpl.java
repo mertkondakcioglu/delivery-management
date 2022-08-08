@@ -47,7 +47,7 @@ public class ShipmentCommandServiceImpl implements ShipmentCommandService {
     @Override
     public ShipmentEntity updateStatus(ShipmentEntity shipmentEntity, ShipmentStatus status) {
         if (ShipmentStatus.UNLOADED.equals(shipmentEntity.getStatus())) {
-            throw new DeliveryManagementException("Package unloaded status can not change");
+            throw new DeliveryManagementException("Shipment unloaded status can not change");
         }
 
         shipmentEntity.setStatus(status);

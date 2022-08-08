@@ -29,7 +29,7 @@ public class DeliveryServiceImpl implements DeliveryService {
         MakeDeliveryResponse response = mapper.map(request);
 
         response.getRoute().forEach(route -> route.getDeliveries().forEach(delivery -> {
-            if (isDeliveryPackage(delivery.getBarcode())) {
+            if (isDeliveryShipment(delivery.getBarcode())) {
                 deliveryShipmentService.delivery(route, delivery);
             } else if (isDeliveryBag(delivery.getBarcode())) {
                 deliveryBagService.delivery(route, delivery);
@@ -41,7 +41,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public boolean isDeliveryPackage(String barcode) {
+    public boolean isDeliveryShipment(String barcode) {
         return StringUtils.hasText(barcode) && barcode.startsWith("P") && barcode.length() == 11;
     }
 

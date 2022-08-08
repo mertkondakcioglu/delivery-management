@@ -15,7 +15,7 @@ public class DeliveryRequest {
     @Size(min = 7, max = 11)
     private String barcode;
 
-    @AssertTrue(message = "barcode is not valid for package or bag")
+    @AssertTrue(message = "barcode is not valid for shipment or bag")
     private boolean isBarcodeValid() {
         if (!StringUtils.hasText(barcode)) return true;
         return (barcode.startsWith("C") && barcode.length() == 7) ||

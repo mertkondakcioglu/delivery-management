@@ -14,5 +14,5 @@ public interface ShipmentQueryRepository extends JpaRepository<ShipmentEntity, L
     @Query("select shipment from ShipmentBagEntity sb " +
             "join sb.barcode shipment " +
             "where sb.bagBarcode.barcode = :bagBarcode")
-    List<ShipmentEntity> findPackagesInBagByBagBarcode(@Param("bagBarcode") String bagBarcode);
+    List<ShipmentEntity> findShipmentsInBagByBagBarcode(@Param("bagBarcode") String bagBarcode);
 }

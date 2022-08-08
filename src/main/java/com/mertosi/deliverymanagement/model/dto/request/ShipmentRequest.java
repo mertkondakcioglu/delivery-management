@@ -21,8 +21,8 @@ public class ShipmentRequest {
     @Positive
     private Integer volumetricWeight;
 
-    @AssertTrue(message = "Package barcode must start with P")
-    private boolean isPackageBarcodeValid() {
+    @AssertTrue(message = "Shipment barcode must start with P")
+    private boolean isShipmentBarcodeValid() {
         if (!StringUtils.hasText(barcode)) return true;
         return barcode.startsWith("P");
     }

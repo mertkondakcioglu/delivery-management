@@ -52,9 +52,9 @@ class ShipmentQueryServiceTest extends AbstractUnitTest {
     void givenValidBagBarcode_whenGetShipmentEntities_thenReturnShipmentEntities() {
         String barcode = "C725799";
         List<ShipmentEntity> testShipmentEntities = ShipmentEntityBuilder.getValidShipmentEntities();
-        when(shipmentQueryRepository.findPackagesInBagByBagBarcode(barcode)).thenReturn(testShipmentEntities);
+        when(shipmentQueryRepository.findShipmentsInBagByBagBarcode(barcode)).thenReturn(testShipmentEntities);
 
-        List<ShipmentEntity> shipmentEntities = shipmentQueryService.getPackagesInBagByBagBarcode(barcode);
+        List<ShipmentEntity> shipmentEntities = shipmentQueryService.getShipmentsInBagByBagBarcode(barcode);
         assertThat(testShipmentEntities).isEqualTo(shipmentEntities);
     }
 }
