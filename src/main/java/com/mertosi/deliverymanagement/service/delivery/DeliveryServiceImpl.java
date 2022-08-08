@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 @Service
 @RequiredArgsConstructor
@@ -29,24 +28,14 @@ public class DeliveryServiceImpl implements DeliveryService {
         MakeDeliveryResponse response = mapper.map(request);
 
         response.getRoute().forEach(route -> route.getDeliveries().forEach(delivery -> {
-            if (isDeliveryShipment(delivery.getBarcode())) {
+            if (delivery.isDeliveryShipment()) {
                 deliveryShipmentService.delivery(route, delivery);
-            } else if (isDeliveryBag(delivery.getBarcode())) {
+            } else if (delivery.isDeliveryBag()) {
                 deliveryBagService.delivery(route, delivery);
             }
         }));
 
         deliveryBagService.checkBagsStatusAfterDelivery();
         return response;
-    }
-
-    @Override
-    public boolean isDeliveryShipment(String barcode) {
-        return StringUtils.hasText(barcode) && barcode.startsWith("P") && barcode.length() == 11;
-    }
-
-    @Override
-    public boolean isDeliveryBag(String barcode) {
-        return StringUtils.hasText(barcode) && barcode.startsWith("C") && barcode.length() == 7;
     }
 }

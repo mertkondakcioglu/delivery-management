@@ -11,4 +11,9 @@ public class DeliveryResponseBuilder extends TestDataBuilder<DeliveryResponse> {
     public static DeliveryResponse getValidDeliveryResponse() {
         return new DeliveryResponseBuilder().build();
     }
+
+    public DeliveryResponseBuilder withBarcode(String barcode) {
+        data.setBarcode(barcode);
+        return this;
+    }
 }

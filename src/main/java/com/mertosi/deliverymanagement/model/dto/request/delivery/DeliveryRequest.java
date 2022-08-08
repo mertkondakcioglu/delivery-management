@@ -6,13 +6,11 @@ import org.springframework.util.StringUtils;
 
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 @Getter
 @Setter
 public class DeliveryRequest {
     @NotBlank
-    @Size(min = 7, max = 11)
     private String barcode;
 
     @AssertTrue(message = "barcode is not valid for shipment or bag")

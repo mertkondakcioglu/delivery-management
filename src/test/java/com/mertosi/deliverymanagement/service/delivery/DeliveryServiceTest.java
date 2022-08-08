@@ -3,6 +3,7 @@ package com.mertosi.deliverymanagement.service.delivery;
 import com.mertosi.deliverymanagement.model.dto.request.delivery.MakeDeliveryRequest;
 import com.mertosi.deliverymanagement.model.dto.request.delivery.MakeDeliveryRequestBuilder;
 import com.mertosi.deliverymanagement.model.dto.response.delivery.DeliveryResponse;
+import com.mertosi.deliverymanagement.model.dto.response.delivery.DeliveryResponseBuilder;
 import com.mertosi.deliverymanagement.model.dto.response.delivery.RouteResponse;
 import com.mertosi.deliverymanagement.model.entity.VehicleEntity;
 import com.mertosi.deliverymanagement.model.entity.VehicleEntityBuilder;
@@ -56,29 +57,37 @@ class DeliveryServiceTest extends AbstractUnitTest {
 
     @Test
     void givenValidShipmentBarcode_whenIsDeliveryShipment_thenReturnTrue() {
-        String barcode = "P1234567890";
-        boolean isShipment = deliveryService.isDeliveryShipment(barcode);
-        assertThat(isShipment).isTrue();
+        DeliveryResponse testDeliveryResponse = new DeliveryResponseBuilder()
+                .withBarcode("P1234567890")
+                .build();
+
+        assertThat(testDeliveryResponse.isDeliveryShipment()).isTrue();
     }
 
     @Test
     void givenValidBagBarcode_whenIsDeliveryShipment_thenReturnFalse() {
-        String barcode = "C123456";
-        boolean isShipment = deliveryService.isDeliveryShipment(barcode);
-        assertThat(isShipment).isFalse();
+        DeliveryResponse testDeliveryResponse = new DeliveryResponseBuilder()
+                .withBarcode("C123456")
+                .build();
+
+        assertThat(testDeliveryResponse.isDeliveryShipment()).isFalse();
     }
 
     @Test
     void givenValidBagBarcode_whenIsDeliveryBag_thenReturnTrue() {
-        String barcode = "C123456";
-        boolean isShipment = deliveryService.isDeliveryBag(barcode);
-        assertThat(isShipment).isTrue();
+        DeliveryResponse testDeliveryResponse = new DeliveryResponseBuilder()
+                .withBarcode("C123456")
+                .build();
+
+        assertThat(testDeliveryResponse.isDeliveryBag()).isTrue();
     }
 
     @Test
     void givenValidShipmentBarcode_whenIsDeliveryBag_thenReturnFalse() {
-        String barcode = "P1234567890";
-        boolean isShipment = deliveryService.isDeliveryBag(barcode);
-        assertThat(isShipment).isFalse();
+        DeliveryResponse testDeliveryResponse = new DeliveryResponseBuilder()
+                .withBarcode("P1234567890")
+                .build();
+
+        assertThat(testDeliveryResponse.isDeliveryBag()).isFalse();
     }
 }
