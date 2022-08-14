@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  discovery-app:
+    image: 'discovery:latest'
+    build:
+      context: .
+    container_name: discovery-app
+    environment:
+      - EUREKA_CLIENT_REGISTER-WITH-EUREKA=false
+      - EUREKA_CLIENT_FETCH-REGISTRY=false
+    ports:
+      - '8761:8761'
+    networks:
+      - discovery-network
+
+networks:
+  discovery-network:
+    name: discovery-network
+    driver: bridge

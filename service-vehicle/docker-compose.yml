@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  vehicle-app:
+    image: 'vehicle:latest'
+    build:
+      context: .
+    container_name: vehicle-app
+    depends_on:
+      - vehicle-db
+    environment:
+      - SPRING_FLYWAY_ENABLED=true
+      - SPRING_FLYWAY_SCHEMAS=vehicle
+      - SPRING_FLYWAY_URL=jdbc:mysql://vehicle-db:3306
+      - SPRING_FLYWAY_USER=root
+      - SPRING_FLYWAY_PASSWORD=1234
+      - SPRING_DATASOURCE_URL=jdbc:mysql://vehicle-db:3306/vehicle?nullCatalogMeansCurrent=true
+      - SPRING_DATASOURCE_DRIVER-CLASS-NAME=com.mysql.cj.jdbc.Driver
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=1234
+      - SPRING_JPA_HIBERNATE_DDL-AUTO=validate
+      - EUREKA_CLIENT_SERVICE-URL_DEFAULT-ZONE=http://discovery-app:8761/eureka
+    ports:
+      - '1921:1921'
+    networks:
+      - vehicle-network
+      - discovery-network
+
+  vehicle-db:
+    image: 'mysql:latest'
+    container_name: vehicle-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+    ports:
+      - '3307:3306'
+    networks:
+      - vehicle-network
+
+networks:
+  vehicle-network:
+  discovery-network:
+    external:
+      name: discovery-network
