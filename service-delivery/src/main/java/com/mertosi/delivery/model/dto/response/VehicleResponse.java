@@ -1,8 +1,10 @@
 package com.mertosi.delivery.model.dto.response;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Getter
 @Setter
 public class VehicleResponse extends AbstractResponse {

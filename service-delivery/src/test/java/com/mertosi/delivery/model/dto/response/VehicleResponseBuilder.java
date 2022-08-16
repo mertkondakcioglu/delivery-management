@@ -8,7 +8,9 @@ public class VehicleResponseBuilder extends TestDataBuilder<VehicleResponse> {
         super(VehicleResponse.class);
     }
 
-    public static VehicleResponse getValidVehicleResponse() {
-        return new VehicleResponseBuilder().build();
+    public static BaseResponse<VehicleResponse> getValidVehicleResponse() {
+        return BaseResponse.<VehicleResponse>builder()
+                .data(new VehicleResponseBuilder().build())
+                .build();
     }
 }
