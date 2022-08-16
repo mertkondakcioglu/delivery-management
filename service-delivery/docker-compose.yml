@@ -8,6 +8,7 @@ services:
     container_name: delivery-app
     depends_on:
       - delivery-db
+      - delivery-kafka
     environment:
       - SPRING_FLYWAY_ENABLED=true
       - SPRING_FLYWAY_SCHEMAS=delivery
@@ -33,6 +34,35 @@ services:
       - MYSQL_ROOT_PASSWORD=1234
     ports:
       - '3306:3306'
+    networks:
+      - delivery-network
+
+  delivery-kafka:
+    image: 'confluentinc/cp-kafka:latest'
+    container_name: delivery-kafka
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_ZOOKEEPER_CONNECT=delivery-registry:2181
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092,PLAINTEXT_HOST://localhost:29092
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      - KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+    depends_on:
+      - delivery-registry
+    networks:
+      - delivery-network
+
+  delivery-registry:
+    image: 'confluentinc/cp-zookeeper:6.2.0'
+    container_name: delivery-registry
+    ports:
+      - "2181:2181"
+    environment:
+      - ZOOKEEPER_CLIENT_PORT=2181
+      - ZOOKEEPER_TICK_TIME=2000
     networks:
       - delivery-network
 
