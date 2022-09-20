@@ -1,8 +1,8 @@
 package com.mertosi.delivery.repository.delivery;
 
 import com.mertosi.delivery.model.entity.DeliveryErrorEntity;
-import com.mertosi.delivery.repository.AbstractJpaIntegrationTest;
 import com.mertosi.delivery.model.entity.DeliveryErrorEntityBuilder;
+import com.mertosi.delivery.repository.AbstractJpaIntegrationTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

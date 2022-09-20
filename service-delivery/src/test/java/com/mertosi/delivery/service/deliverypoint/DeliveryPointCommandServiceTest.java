@@ -1,8 +1,8 @@
 package com.mertosi.delivery.service.deliverypoint;
 
 import com.mertosi.delivery.model.dto.request.DeliveryPointRequest;
-import com.mertosi.delivery.model.entity.DeliveryPointEntity;
 import com.mertosi.delivery.model.dto.request.DeliveryPointRequestBuilder;
+import com.mertosi.delivery.model.entity.DeliveryPointEntity;
 import com.mertosi.delivery.model.entity.DeliveryPointEntityBuilder;
 import com.mertosi.delivery.repository.deliverypoint.DeliveryPointCommandRepository;
 import com.mertosi.delivery.service.AbstractUnitTest;

@@ -2,8 +2,8 @@ package com.mertosi.delivery.repository.shipment;
 
 import com.mertosi.delivery.common.enums.ShipmentStatus;
 import com.mertosi.delivery.model.entity.ShipmentEntity;
-import com.mertosi.delivery.repository.AbstractJpaIntegrationTest;
 import com.mertosi.delivery.model.entity.ShipmentEntityBuilder;
+import com.mertosi.delivery.repository.AbstractJpaIntegrationTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

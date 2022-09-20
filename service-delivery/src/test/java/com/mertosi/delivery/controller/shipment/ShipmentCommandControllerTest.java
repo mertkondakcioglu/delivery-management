@@ -1,11 +1,11 @@
 package com.mertosi.delivery.controller.shipment;
 
-import com.mertosi.delivery.model.dto.request.ShipmentRequest;
-import com.mertosi.delivery.model.entity.ShipmentEntity;
-import com.mertosi.delivery.service.shipment.ShipmentCommandService;
 import com.mertosi.delivery.controller.AbstractControllerTest;
+import com.mertosi.delivery.model.dto.request.ShipmentRequest;
 import com.mertosi.delivery.model.dto.request.ShipmentRequestBuilder;
+import com.mertosi.delivery.model.entity.ShipmentEntity;
 import com.mertosi.delivery.model.entity.ShipmentEntityBuilder;
+import com.mertosi.delivery.service.shipment.ShipmentCommandService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;

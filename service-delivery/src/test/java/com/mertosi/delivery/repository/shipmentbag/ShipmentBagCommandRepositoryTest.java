@@ -1,8 +1,8 @@
 package com.mertosi.delivery.repository.shipmentbag;
 
 import com.mertosi.delivery.model.entity.ShipmentBagEntity;
-import com.mertosi.delivery.repository.AbstractJpaIntegrationTest;
 import com.mertosi.delivery.model.entity.ShipmentBagEntityBuilder;
+import com.mertosi.delivery.repository.AbstractJpaIntegrationTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

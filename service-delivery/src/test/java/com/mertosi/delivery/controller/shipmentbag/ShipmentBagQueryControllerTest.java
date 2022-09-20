@@ -1,9 +1,9 @@
 package com.mertosi.delivery.controller.shipmentbag;
 
-import com.mertosi.delivery.model.entity.ShipmentBagEntity;
-import com.mertosi.delivery.service.shipmentbag.ShipmentBagQueryService;
 import com.mertosi.delivery.controller.AbstractControllerTest;
+import com.mertosi.delivery.model.entity.ShipmentBagEntity;
 import com.mertosi.delivery.model.entity.ShipmentBagEntityBuilder;
+import com.mertosi.delivery.service.shipmentbag.ShipmentBagQueryService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;

@@ -2,8 +2,8 @@ package com.mertosi.delivery.repository.bag;
 
 import com.mertosi.delivery.common.enums.BagStatus;
 import com.mertosi.delivery.model.entity.BagEntity;
-import com.mertosi.delivery.repository.AbstractJpaIntegrationTest;
 import com.mertosi.delivery.model.entity.BagEntityBuilder;
+import com.mertosi.delivery.repository.AbstractJpaIntegrationTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

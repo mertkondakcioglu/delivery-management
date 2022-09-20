@@ -1,16 +1,16 @@
 package com.mertosi.delivery.service.delivery.shipment;
 
-import com.mertosi.delivery.common.enums.DeliveryType;
-import com.mertosi.delivery.service.delivery.error.DeliveryErrorService;
-import com.mertosi.delivery.service.shipment.ShipmentCommandService;
-import com.mertosi.delivery.service.shipment.ShipmentQueryService;
-import com.mertosi.delivery.service.shipmentbag.ShipmentBagQueryService;
 import com.mertosi.delivery.common.enums.DeliveryPoint;
+import com.mertosi.delivery.common.enums.DeliveryType;
 import com.mertosi.delivery.common.enums.ShipmentStatus;
 import com.mertosi.delivery.model.dto.response.delivery.DeliveryResponse;
 import com.mertosi.delivery.model.dto.response.delivery.RouteResponse;
 import com.mertosi.delivery.model.entity.ShipmentBagEntity;
 import com.mertosi.delivery.model.entity.ShipmentEntity;
+import com.mertosi.delivery.service.delivery.error.DeliveryErrorService;
+import com.mertosi.delivery.service.shipment.ShipmentCommandService;
+import com.mertosi.delivery.service.shipment.ShipmentQueryService;
+import com.mertosi.delivery.service.shipmentbag.ShipmentBagQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,9 +1,9 @@
 package com.mertosi.delivery.service.shipmentbag;
 
 import com.mertosi.delivery.model.entity.ShipmentBagEntity;
-import com.mertosi.delivery.service.AbstractUnitTest;
 import com.mertosi.delivery.model.entity.ShipmentBagEntityBuilder;
 import com.mertosi.delivery.repository.shipmentbag.ShipmentBagQueryRepository;
+import com.mertosi.delivery.service.AbstractUnitTest;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

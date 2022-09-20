@@ -2,9 +2,9 @@ package com.mertosi.delivery.service.shipment;
 
 import com.mertosi.delivery.common.exception.NotFoundException;
 import com.mertosi.delivery.model.entity.ShipmentEntity;
-import com.mertosi.delivery.service.AbstractUnitTest;
 import com.mertosi.delivery.model.entity.ShipmentEntityBuilder;
 import com.mertosi.delivery.repository.shipment.ShipmentQueryRepository;
+import com.mertosi.delivery.service.AbstractUnitTest;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
