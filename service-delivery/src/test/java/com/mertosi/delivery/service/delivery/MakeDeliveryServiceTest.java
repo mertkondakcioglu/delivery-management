@@ -18,10 +18,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-class DeliveryServiceTest extends AbstractUnitTest {
+class MakeDeliveryServiceTest extends AbstractUnitTest {
 
     @InjectMocks
-    DeliveryServiceImpl deliveryService;
+    MakeDeliveryServiceImpl deliveryService;
 
     @Mock
     private DeliveryBagService deliveryBagService;
@@ -47,24 +47,6 @@ class DeliveryServiceTest extends AbstractUnitTest {
         deliveryService.makeDelivery(testMakeDeliveryRequest);
 
         verify(deliveryBagService, times(2)).delivery(any(RouteResponse.class), any(DeliveryResponse.class));
-    }
-
-    @Test
-    void givenValidShipmentBarcode_whenIsDeliveryShipment_thenReturnTrue() {
-        DeliveryResponse testDeliveryResponse = new DeliveryResponseBuilder()
-                .withBarcode("P1234567890")
-                .build();
-
-        assertThat(testDeliveryResponse.isDeliveryShipment()).isTrue();
-    }
-
-    @Test
-    void givenValidBagBarcode_whenIsDeliveryShipment_thenReturnFalse() {
-        DeliveryResponse testDeliveryResponse = new DeliveryResponseBuilder()
-                .withBarcode("C123456")
-                .build();
-
-        assertThat(testDeliveryResponse.isDeliveryShipment()).isFalse();
     }
 
     @Test

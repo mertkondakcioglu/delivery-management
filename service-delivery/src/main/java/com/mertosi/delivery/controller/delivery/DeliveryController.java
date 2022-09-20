@@ -3,7 +3,7 @@ package com.mertosi.delivery.controller.delivery;
 import com.mertosi.delivery.model.dto.request.delivery.MakeDeliveryRequest;
 import com.mertosi.delivery.model.dto.response.BaseResponse;
 import com.mertosi.delivery.model.dto.response.delivery.MakeDeliveryResponse;
-import com.mertosi.delivery.service.delivery.DeliveryService;
+import com.mertosi.delivery.service.delivery.MakeDeliveryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,12 +16,12 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/delivery")
 public class DeliveryController {
-    private final DeliveryService deliveryService;
+    private final MakeDeliveryService makeDeliveryService;
 
     @PostMapping
     public BaseResponse<MakeDeliveryResponse> makeDelivery(@RequestBody @Valid MakeDeliveryRequest request) {
         return BaseResponse.<MakeDeliveryResponse>builder()
-                .data(deliveryService.makeDelivery(request))
+                .data(makeDeliveryService.makeDelivery(request))
                 .build();
     }
 }

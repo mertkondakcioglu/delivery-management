@@ -3,7 +3,7 @@ package com.mertosi.delivery.controller.delivery;
 import com.mertosi.delivery.controller.AbstractControllerTest;
 import com.mertosi.delivery.model.dto.request.delivery.MakeDeliveryRequest;
 import com.mertosi.delivery.model.dto.response.delivery.MakeDeliveryResponse;
-import com.mertosi.delivery.service.delivery.DeliveryService;
+import com.mertosi.delivery.service.delivery.MakeDeliveryService;
 import com.mertosi.delivery.model.dto.request.delivery.MakeDeliveryRequestBuilder;
 import com.mertosi.delivery.model.dto.response.delivery.MakeDeliveryResponseBuilder;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ import static org.mockito.Mockito.when;
 @WebFluxTest(controllers = DeliveryController.class)
 class DeliveryControllerTest extends AbstractControllerTest {
     @MockBean
-    private DeliveryService deliveryService;
+    private MakeDeliveryService makeDeliveryService;
 
     private static final String DELIVERY_ENDPOINT = "/api/v1/delivery";
 
@@ -24,7 +24,7 @@ class DeliveryControllerTest extends AbstractControllerTest {
     void givenValidMakeDeliveryRequest_whenMakeDelivery_thenReturnMakeDeliveryResponse() {
         MakeDeliveryRequest makeDeliveryRequest = MakeDeliveryRequestBuilder.getValidMakeDeliveryRequest();
         MakeDeliveryResponse makeDeliveryResponse = MakeDeliveryResponseBuilder.getValidMakeDeliveryResponse();
-        when(deliveryService.makeDelivery(any(MakeDeliveryRequest.class))).thenReturn(makeDeliveryResponse);
+        when(makeDeliveryService.makeDelivery(any(MakeDeliveryRequest.class))).thenReturn(makeDeliveryResponse);
 
         client.post()
                 .uri(DELIVERY_ENDPOINT)

@@ -4,7 +4,6 @@ import com.mertosi.delivery.common.mapper.delivery.DeliveryResponseMapper;
 import com.mertosi.delivery.model.dto.request.delivery.MakeDeliveryRequest;
 import com.mertosi.delivery.model.dto.response.delivery.MakeDeliveryResponse;
 import com.mertosi.delivery.service.delivery.bag.DeliveryBagService;
-import com.mertosi.delivery.service.delivery.shipment.DeliveryShipmentService;
 import com.mertosi.delivery.service.delivery.vehicle.VehicleProducerService;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
@@ -14,9 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class DeliveryServiceImpl implements DeliveryService {
+public class MakeDeliveryServiceImpl implements MakeDeliveryService {
+
+    private final DeliveryProvider deliveryProvider;
     private final DeliveryBagService deliveryBagService;
-    private final DeliveryShipmentService deliveryShipmentService;
     private final VehicleProducerService vehicleProducerService;
 
     private final DeliveryResponseMapper mapper = Mappers.getMapper(DeliveryResponseMapper.class);
@@ -26,13 +26,8 @@ public class DeliveryServiceImpl implements DeliveryService {
         vehicleProducerService.sendMessage(request.getPlate());
 
         MakeDeliveryResponse response = mapper.map(request);
-        response.getRoute().forEach(route -> route.getDeliveries().forEach(delivery -> {
-            if (delivery.isDeliveryShipment()) {
-                deliveryShipmentService.delivery(route, delivery);
-            } else if (delivery.isDeliveryBag()) {
-                deliveryBagService.delivery(route, delivery);
-            }
-        }));
+        response.getRoute().forEach(route -> route.getDeliveries()
+                .forEach(delivery -> deliveryProvider.getDelivery(delivery.getType()).delivery(route, delivery)));
 
         deliveryBagService.checkBagsStatusAfterDelivery();
         return response;

@@ -1,5 +1,6 @@
 package com.mertosi.delivery.service.delivery.bag;
 
+import com.mertosi.delivery.common.enums.DeliveryType;
 import com.mertosi.delivery.service.delivery.error.DeliveryErrorService;
 import com.mertosi.delivery.service.shipment.ShipmentCommandService;
 import com.mertosi.delivery.service.shipment.ShipmentQueryService;
@@ -35,8 +36,8 @@ public class DeliveryBagServiceImpl implements DeliveryBagService {
         bagEntity = bagCommandService.updateStatus(bagEntity, BagStatus.LOADED);
 
         if (isLoadable(bagEntity, routeResponse.getDeliveryPoint())) {
-            List<ShipmentEntity> packagesInBag = shipmentQueryService.getShipmentsInBagByBagBarcode(bagEntity.getBarcode());
-            packagesInBag.forEach(shipmentEntity -> shipmentCommandService.updateStatus(shipmentEntity, ShipmentStatus.UNLOADED));
+            List<ShipmentEntity> shipmentsInBag = shipmentQueryService.getShipmentsInBagByBagBarcode(bagEntity.getBarcode());
+            shipmentsInBag.forEach(shipmentEntity -> shipmentCommandService.updateStatus(shipmentEntity, ShipmentStatus.UNLOADED));
             bagEntity = bagCommandService.updateStatus(bagEntity, BagStatus.UNLOADED);
         } else {
             deliveryErrorService.create(deliveryResponse.getBarcode(), routeResponse.getDeliveryPoint());
@@ -55,13 +56,18 @@ public class DeliveryBagServiceImpl implements DeliveryBagService {
     public void checkBagsStatusAfterDelivery() {
         List<BagEntity> bagEntities = bagQueryService.getAllByStatus(BagStatus.CREATED);
         bagEntities.forEach(bagEntity -> {
-            List<ShipmentEntity> packagesInBag = shipmentQueryService.getShipmentsInBagByBagBarcode(bagEntity.getBarcode());
-            boolean isBagTotallyUnloaded = packagesInBag.stream()
+            List<ShipmentEntity> shipmentsInBag = shipmentQueryService.getShipmentsInBagByBagBarcode(bagEntity.getBarcode());
+            boolean isBagTotallyUnloaded = shipmentsInBag.stream()
                     .allMatch(shipmentEntity -> ShipmentStatus.UNLOADED.equals(shipmentEntity.getStatus()));
 
             if (isBagTotallyUnloaded) {
                 bagCommandService.updateStatus(bagEntity, BagStatus.UNLOADED);
             }
         });
+    }
+
+    @Override
+    public DeliveryType type() {
+        return DeliveryType.BAG;
     }
 }

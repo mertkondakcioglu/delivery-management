@@ -2,7 +2,7 @@
 
 Delivery Management project by Mert Kondakcıoğlu.
 
-A Delivery Management is a service for two different types of shipments that can be transported in vehicles
+A Delivery Management is a service for two different types of deliveries that can be transported in vehicles
 and unloaded at delivery points.
 
 ### Build Commands:

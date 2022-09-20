@@ -1,5 +1,6 @@
 package com.mertosi.delivery.service.delivery.shipment;
 
+import com.mertosi.delivery.common.enums.DeliveryType;
 import com.mertosi.delivery.service.delivery.error.DeliveryErrorService;
 import com.mertosi.delivery.service.shipment.ShipmentCommandService;
 import com.mertosi.delivery.service.shipment.ShipmentQueryService;
@@ -45,5 +46,10 @@ public class DeliveryShipmentServiceImpl implements DeliveryShipmentService {
 
         return deliveryPoint.equals(routeDeliveryPoint) &&
                 (!DeliveryPoint.TRANSFER_CENTER.getValue().equals(deliveryPoint) || shipmentBagEntity != null);
+    }
+
+    @Override
+    public DeliveryType type() {
+        return DeliveryType.SHIPMENT;
     }
 }

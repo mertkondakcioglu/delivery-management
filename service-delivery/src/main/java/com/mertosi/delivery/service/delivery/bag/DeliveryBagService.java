@@ -1,12 +1,9 @@
 package com.mertosi.delivery.service.delivery.bag;
 
-import com.mertosi.delivery.model.dto.response.delivery.DeliveryResponse;
-import com.mertosi.delivery.model.dto.response.delivery.RouteResponse;
 import com.mertosi.delivery.model.entity.BagEntity;
+import com.mertosi.delivery.service.delivery.Delivery;
 
-public interface DeliveryBagService {
-    void delivery(RouteResponse routeResponse, DeliveryResponse deliveryResponse);
-
+public interface DeliveryBagService extends Delivery {
     boolean isLoadable(BagEntity bagEntity, Integer routeDeliveryPoint);
 
     void checkBagsStatusAfterDelivery();

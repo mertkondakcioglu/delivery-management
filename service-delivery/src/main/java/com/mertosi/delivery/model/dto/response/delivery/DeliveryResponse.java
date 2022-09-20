@@ -1,5 +1,6 @@
 package com.mertosi.delivery.model.dto.response.delivery;
 
+import com.mertosi.delivery.common.enums.DeliveryType;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.util.StringUtils;
@@ -10,8 +11,11 @@ public class DeliveryResponse {
     private String barcode;
     private Integer state;
 
-    public boolean isDeliveryShipment() {
-        return StringUtils.hasText(barcode) && barcode.startsWith("P") && barcode.length() == 11;
+    public DeliveryType getType() {
+        if(isDeliveryBag()) {
+            return DeliveryType.BAG;
+        }
+        return DeliveryType.SHIPMENT;
     }
 
     public boolean isDeliveryBag() {
