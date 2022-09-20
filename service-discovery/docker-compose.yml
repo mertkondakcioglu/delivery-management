@@ -6,9 +6,6 @@ services:
     build:
       context: .
     container_name: discovery-app
-    environment:
-      - EUREKA_CLIENT_REGISTER-WITH-EUREKA=false
-      - EUREKA_CLIENT_FETCH-REGISTRY=false
     ports:
       - '8761:8761'
     networks:
