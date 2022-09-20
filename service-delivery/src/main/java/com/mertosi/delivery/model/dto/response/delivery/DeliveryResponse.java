@@ -12,7 +12,7 @@ public class DeliveryResponse {
     private Integer state;
 
     public DeliveryType getType() {
-        if(isDeliveryBag()) {
+        if (isDeliveryBag()) {
             return DeliveryType.BAG;
         }
         return DeliveryType.SHIPMENT;
