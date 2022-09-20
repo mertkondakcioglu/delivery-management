@@ -1,5 +1,6 @@
 package com.mertosi.delivery.service.delivery;
 
+import com.mertosi.delivery.common.enums.DeliveryType;
 import com.mertosi.delivery.model.dto.request.delivery.MakeDeliveryRequest;
 import com.mertosi.delivery.model.dto.request.delivery.MakeDeliveryRequestBuilder;
 import com.mertosi.delivery.model.dto.response.delivery.DeliveryResponse;
@@ -15,14 +16,15 @@ import org.mockito.Mock;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 class MakeDeliveryServiceTest extends AbstractUnitTest {
 
     @InjectMocks
     MakeDeliveryServiceImpl deliveryService;
 
+    @Mock
+    private DeliveryProvider deliveryProvider;
     @Mock
     private DeliveryBagService deliveryBagService;
     @Mock
@@ -35,6 +37,9 @@ class MakeDeliveryServiceTest extends AbstractUnitTest {
     void givenValidMakeDeliveryRequest_whenMakeDeliveryShipment_thenReturnMakeDeliveryResponse() {
         MakeDeliveryRequest testMakeDeliveryRequest = MakeDeliveryRequestBuilder.getValidMakeDeliveryRequest();
 
+        when(deliveryProvider.getDelivery(DeliveryType.SHIPMENT)).thenReturn(deliveryShipmentService);
+        when(deliveryProvider.getDelivery(DeliveryType.BAG)).thenReturn(deliveryBagService);
+
         deliveryService.makeDelivery(testMakeDeliveryRequest);
 
         verify(deliveryShipmentService, times(2)).delivery(any(RouteResponse.class), any(DeliveryResponse.class));
@@ -43,6 +48,9 @@ class MakeDeliveryServiceTest extends AbstractUnitTest {
     @Test
     void givenValidMakeDeliveryRequest_whenMakeDeliveryBag_thenReturnMakeDeliveryResponse() {
         MakeDeliveryRequest testMakeDeliveryRequest = MakeDeliveryRequestBuilder.getValidMakeDeliveryRequest();
+
+        when(deliveryProvider.getDelivery(DeliveryType.SHIPMENT)).thenReturn(deliveryShipmentService);
+        when(deliveryProvider.getDelivery(DeliveryType.BAG)).thenReturn(deliveryBagService);
 
         deliveryService.makeDelivery(testMakeDeliveryRequest);
 
