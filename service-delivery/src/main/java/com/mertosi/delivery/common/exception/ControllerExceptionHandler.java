@@ -8,10 +8,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
@@ -19,12 +18,11 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Slf4j
-@ControllerAdvice
+@RestControllerAdvice
 public class ControllerExceptionHandler {
 
     @ExceptionHandler(DeliveryException.class)
     @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
-    @ResponseBody
     public BaseResponse<Object> onDeliveryException(DeliveryException e) {
         log.error(e.getMessage(), e);
 
@@ -36,7 +34,6 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ResponseBody
     public BaseResponse<Object> onMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         log.error(e.getMessage(), e);
 
@@ -52,7 +49,6 @@ public class ControllerExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    @ResponseBody
     public BaseResponse<Object> handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
         String message;
         if (e.getCause() instanceof InvalidFormatException invalidFormatException) {
@@ -71,7 +67,6 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ResponseBody
     public BaseResponse<Object> handleValidation(ConstraintViolationException e) {
         log.error(e.getMessage(), e);
 
@@ -87,7 +82,6 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ResponseBody
     public BaseResponse<Object> onDataIntegrityViolationException(DataIntegrityViolationException e) {
         log.error(e.getMessage(), e);
 
@@ -98,7 +92,6 @@ public class ControllerExceptionHandler {
     }
 
     @ExceptionHandler(FeignException.class)
-    @ResponseBody
     public BaseResponse<Object> onFeignException(FeignException e, HttpServletResponse response) {
         log.error(e.getMessage(), e);
 
