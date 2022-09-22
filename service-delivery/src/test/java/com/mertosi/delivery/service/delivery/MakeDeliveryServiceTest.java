@@ -63,7 +63,7 @@ class MakeDeliveryServiceTest extends AbstractUnitTest {
                 .withBarcode("C123456")
                 .build();
 
-        assertThat(testDeliveryResponse.isDeliveryBag()).isTrue();
+        assertThat(testDeliveryResponse.isBag()).isTrue();
     }
 
     @Test
@@ -72,6 +72,6 @@ class MakeDeliveryServiceTest extends AbstractUnitTest {
                 .withBarcode("P1234567890")
                 .build();
 
-        assertThat(testDeliveryResponse.isDeliveryBag()).isFalse();
+        assertThat(testDeliveryResponse.isBag()).isFalse();
     }
 }
