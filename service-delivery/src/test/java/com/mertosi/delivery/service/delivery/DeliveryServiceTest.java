@@ -18,10 +18,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-class MakeDeliveryServiceTest extends AbstractUnitTest {
+class DeliveryServiceTest extends AbstractUnitTest {
 
     @InjectMocks
-    MakeDeliveryServiceImpl deliveryService;
+    DeliveryServiceImpl deliveryService;
 
     @Mock
     private DeliveryProvider deliveryProvider;
@@ -63,7 +63,7 @@ class MakeDeliveryServiceTest extends AbstractUnitTest {
                 .withBarcode("C123456")
                 .build();
 
-        assertThat(testDeliveryResponse.isBag()).isTrue();
+        assertThat(testDeliveryResponse.isDeliveryBag()).isTrue();
     }
 
     @Test
@@ -72,6 +72,6 @@ class MakeDeliveryServiceTest extends AbstractUnitTest {
                 .withBarcode("P1234567890")
                 .build();
 
-        assertThat(testDeliveryResponse.isBag()).isFalse();
+        assertThat(testDeliveryResponse.isDeliveryBag()).isFalse();
     }
 }

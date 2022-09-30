@@ -5,7 +5,7 @@ import com.mertosi.delivery.model.dto.request.delivery.MakeDeliveryRequest;
 import com.mertosi.delivery.model.dto.request.delivery.MakeDeliveryRequestBuilder;
 import com.mertosi.delivery.model.dto.response.delivery.MakeDeliveryResponse;
 import com.mertosi.delivery.model.dto.response.delivery.MakeDeliveryResponseBuilder;
-import com.mertosi.delivery.service.delivery.MakeDeliveryService;
+import com.mertosi.delivery.service.delivery.DeliveryService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -16,7 +16,7 @@ import static org.mockito.Mockito.when;
 @WebFluxTest(controllers = DeliveryController.class)
 class DeliveryControllerTest extends AbstractControllerTest {
     @MockBean
-    private MakeDeliveryService makeDeliveryService;
+    private DeliveryService deliveryService;
 
     private static final String DELIVERY_ENDPOINT = "/api/v1/delivery";
 
@@ -24,7 +24,7 @@ class DeliveryControllerTest extends AbstractControllerTest {
     void givenValidMakeDeliveryRequest_whenMakeDelivery_thenReturnMakeDeliveryResponse() {
         MakeDeliveryRequest makeDeliveryRequest = MakeDeliveryRequestBuilder.getValidMakeDeliveryRequest();
         MakeDeliveryResponse makeDeliveryResponse = MakeDeliveryResponseBuilder.getValidMakeDeliveryResponse();
-        when(makeDeliveryService.makeDelivery(any(MakeDeliveryRequest.class))).thenReturn(makeDeliveryResponse);
+        when(deliveryService.makeDelivery(any(MakeDeliveryRequest.class))).thenReturn(makeDeliveryResponse);
 
         client.post()
                 .uri(DELIVERY_ENDPOINT)

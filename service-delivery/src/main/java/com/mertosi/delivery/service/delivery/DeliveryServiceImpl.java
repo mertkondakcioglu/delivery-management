@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class MakeDeliveryServiceImpl implements MakeDeliveryService {
+public class DeliveryServiceImpl implements DeliveryService {
 
     private final DeliveryProvider deliveryProvider;
     private final DeliveryBagService deliveryBagService;

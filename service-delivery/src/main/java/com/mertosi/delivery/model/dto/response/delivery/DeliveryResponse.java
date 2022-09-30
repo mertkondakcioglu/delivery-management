@@ -14,13 +14,10 @@ public class DeliveryResponse {
     private Integer state;
 
     public DeliveryType getType() {
-        if (isBag()) {
-            return DeliveryType.BAG;
-        }
-        return DeliveryType.SHIPMENT;
+        return isDeliveryBag() ? DeliveryType.BAG : DeliveryType.SHIPMENT;
     }
 
-    public boolean isBag() {
+    public boolean isDeliveryBag() {
         return StringUtils.hasText(barcode) && barcode.startsWith("C") && barcode.length() == 7;
     }
 }

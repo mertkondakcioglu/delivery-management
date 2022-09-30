@@ -11,15 +11,15 @@ import java.util.Map;
 @Component
 @RequiredArgsConstructor
 public class DeliveryProvider {
-    private final Collection<Delivery> deliveries;
-    private final Map<DeliveryType, Delivery> deliveryMap;
+    private final Collection<BaseDelivery> deliveries;
+    private final Map<DeliveryType, BaseDelivery> deliveryMap;
 
     @PostConstruct
     public void postConstruct() {
-        deliveries.forEach(translator -> deliveryMap.put(translator.type(), translator));
+        deliveries.forEach(delivery -> deliveryMap.put(delivery.type(), delivery));
     }
 
-    public Delivery getDelivery(DeliveryType type) {
+    public BaseDelivery getDelivery(DeliveryType type) {
         return deliveryMap.get(type);
     }
 }
